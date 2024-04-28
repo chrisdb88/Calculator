@@ -5,7 +5,7 @@ const infoPromptText = [
     "Enter the second operand, then equal for result.",
     "Result is displayed top-right",
     "Backspaced the current operand",
-    "Nothing to delete.",
+    "Nothing more to delete.",
     "You've reached the character limit.",
     "That will crash my calculator!"
 ]
@@ -82,7 +82,7 @@ buttons.forEach(function (button) {
             }
         } else if (e.target.className === "numberButton" & currentOperand.length >= charLimit) {
             infoPromptContainer.textContent = infoPromptText[5]
-        } else if (e.target.className === "operatorButton" & currentOperand !== "" & currentOperator === "") {
+        } else if (e.target.className === "operatorButton" & currentOperator === "") {
             currentOperator = e.target.textContent
             totalInput = totalInput.concat(`${currentOperand} ${currentOperator} `)
             resultContainer.textContent = totalInput
@@ -90,7 +90,7 @@ buttons.forEach(function (button) {
             inputContainer.textContent = currentOperand
             infoPromptContainer.textContent = infoPromptText[1]
             characterLimitContainer.textContent = `${currentOperand.length} / ${charLimit}`
-        } else if (e.target.className === "operatorButton" & currentOperand !== "" & currentOperator !== "") {
+        } else if (e.target.className === "operatorButton" & currentOperator !== "") {
             let result = operate(primaryNumber, secondaryNumber, currentOperator)
             if (result === "ERR") {
                 resultContainer.textContent = "ERR: Cannot divide by 0"
@@ -110,7 +110,7 @@ buttons.forEach(function (button) {
             } else {
                 infoPromptContainer.textContent = infoPromptText[2]
             }
-        } else if (e.target.className === "operatorButton" & currentOperand === "" & currentOperator !== "") {
+        } else if (e.target.className === "operatorButton" & currentOperator !== "") {
             currentOperator = e.target.textContent
             totalInput = primaryNumber.toString().concat(` ${currentOperator} `)
             resultContainer.textContent = totalInput
@@ -129,20 +129,24 @@ buttons.forEach(function (button) {
                 if (currentOperator !== "" & currentOperand !== "") {
                     currentOperand = currentOperand.substring(0, currentOperand.length - 1)
                     if (currentOperand === "") {
+                        infoPromptContainer.textContent = infoPromptText[4]
                         currentOperand = "0"
                         secondaryNumber = 0
                     } else {
                         secondaryNumber = Number(currentOperand)
+                        infoPromptContainer.textContent = infoPromptText[3]
                     }
                     inputContainer.textContent = currentOperand
                     characterLimitContainer.textContent = `${currentOperand.length} / ${charLimit}`
                 } else if (currentOperand !== "0") { 
                     currentOperand = currentOperand.substring(0, currentOperand.length - 1)
                     if (currentOperand === "") {
+                        infoPromptContainer.textContent = infoPromptText[4]
                         currentOperand = "0"
                         primaryNumber = 0
                     } else {
                         primaryNumber = Number(currentOperand)
+                        infoPromptContainer.textContent = infoPromptText[3]
                     }
                     inputContainer.textContent = currentOperand
                     characterLimitContainer.textContent = `${currentOperand.length} / ${charLimit}`
