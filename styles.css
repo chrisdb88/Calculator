@@ -31,23 +31,23 @@ body {
 }
 
 .resultContainer {
-    flex: 1 1 30%;
+    flex: 1 1 20%;
     display: flex;
     justify-content: end;
     align-items: end;
     border-bottom: 2px solid dimgray;
     color: white;
-    font-size: 150%;
+    font-size: 100%;
     padding: 4px;
 }
 
 .inputContainer {
-    flex: 1 1 50%;
+    flex: 1 1 60%;
     display: flex;
     justify-content: end;
     align-items: end;
     color: white;
-    font-size: 200%;
+    font-size: 250%;
     font-weight: 700;
     padding: 4px;
 }
@@ -110,6 +110,13 @@ button {
     font-size: 300%;
 }
 
+.operatorButton {
+    background-color: darkblue;
+}
+
+.stateButton {
+    background-color: darkred;
+}
 
 
 /* * {
